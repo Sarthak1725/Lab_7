@@ -37,6 +37,63 @@ public class CalculatorApp {
             double num1 = 0, num2 = 0;
 
 
-            
-}
+            try {
+                if (choice >= 1 && choice <= 4) {
+
+                    System.out.print("Enter first number: ");
+                    num1 = sc.nextDouble();
+                    System.out.print("Enter second number: ");
+                    num2 = sc.nextDouble();
+                } else if (choice == 5 || choice == 6 || choice == 7) {
+
+                    System.out.print("Enter a number: ");
+                    num1 = sc.nextDouble();
+                } else {
+                    System.out.println("Invalid operation choice.");
+                    continue;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid number format. Please try again.");
+                sc.nextLine();
+                continue;
+            }
+
+
+            try {
+                double result = 0;
+                switch (choice) {
+                    case 1:
+                        result = Calculator.add(num1, num2);
+                        break;
+                    case 2:
+                        result = Calculator.subtract(num1, num2);
+                        break;
+                    case 3:
+                        result = Calculator.multiply(num1, num2);
+                        break;
+                    case 4:
+                        result = Calculator.divide(num1, num2);
+                        break;
+                    case 5:
+                        result = Calculator.square(num1);
+                        break;
+                    case 6:
+                        result = Calculator.cube(num1);
+                        break;
+                    case 7:
+                        result = Calculator.squareRoot(num1);
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                        continue;
+                }
+                System.out.println("Result: " + result);
+            } catch (ArithmeticException e) {
+                System.out.println("Error in arithmetic operation: " + e.getMessage());
+            }
+        }
+
+
+        sc.close();
     }
+}
